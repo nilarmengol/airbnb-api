@@ -1,5 +1,4 @@
-
-
+const mongoose = require('mongoose')
 
 const Place = mongoose.model('place', {
 	title: {
@@ -33,6 +32,7 @@ const Place = mongoose.model('place', {
 	guests: {
     type: Number,
     required: [true, 'Number of guests is required']
-  })
+  }
+})
 
-module.export = Place
+module.exports = Place
