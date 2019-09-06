@@ -12,6 +12,7 @@ app.get('/', require('./controllers/root'))
 app.get('/places', require('./controllers/getPlaces'))
 app.get('/places/:id', require('./controllers/getPlace'))
 app.patch('/places/:id', require('./controllers/patchPlace'))
+app.delete('/places/:id', require('./controllers/deletePlace'))
 
 
 
