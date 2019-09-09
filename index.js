@@ -19,6 +19,9 @@ app.get('/types', require('./controllers/getTypes'))
 
 app.post('/users', require('./controllers/postUser'))
 
+app.post('/amenities', require('./controllers/postAmenity'))
+app.get('/amenities', require('./controllers/getAmenity'))
+
 
 
 
