@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const User = mongoose.model('user', {
 	avatar: {
     type: String,
-    required: [false, 'https://randomuser.me/api/portraits/lego/1.jpg']
+    default: 'https://randomuser.me/api/portraits/lego/1.jpg'
   },
 	email: {
     type: String,
@@ -18,7 +18,7 @@ const User = mongoose.model('user', {
     required: [true, 'Name is required']
   },
 	password: {
-    type: Number,
+    type: String,
     required: [true, 'Password is required'],
 		select: false
   }
