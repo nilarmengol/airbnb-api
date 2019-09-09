@@ -22,7 +22,7 @@ const Place = require('../models/place')
 
 
 module.exports = (req, res) => {
-	Place.find({guests: {$gt: req.body.guests}}).select().then(data => {
+	Place.find({}).populate('types').then(data => {
 		 res.send(data)
 	})
 	.catch(err => {
