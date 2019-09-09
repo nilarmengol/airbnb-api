@@ -22,8 +22,24 @@ const Place = require('../models/place')
 
 
 module.exports = (req, res) => {
-	Place.find({}).lean().populate('types').then(data => {
-		 res.send(data)
+	Place.find({}).select('bedrooms city country images price reviews title type').lean().then(data => {
+
+data.map(place => {
+	place.image = place.images[0]
+ delete place.images
+ place.reviews = place.reviews.length
+})
+
+
+// reviews = place.reviews.length
+//
+// 		let convertImage = (image) => {
+// 			image = place.images[0]
+// 		}
+
+
+
+		res.send(data)
 	})
 	.catch(err => {
 		res.send(err)
@@ -31,12 +47,17 @@ module.exports = (req, res) => {
 }
 
 
-let convertImage = (image) => {
-	image = place.images[0]
-}
 
-let reviews = () =>  {
-
-	return place.reviews.length
-
-}
+//
+// let reviews = () =>  {
+//
+// 	return place.reviews.length
+//
+// }
+//
+// let avgRating = () => {
+//
+// let sumReviews = place.reviews.reduce((n,i) => n+i)
+// return avg / place.reviews.length
+//
+// }

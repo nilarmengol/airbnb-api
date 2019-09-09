@@ -4,7 +4,7 @@ const Place = require('../models/place')
 		Place.findById(req.params.id).populate({
   path: 'user',
   select: 'name avatar'
-}).select('bedrooms city country images price reviews title type').then(data => {
+}).select().then(data => {
 			 res.send(data)
 		})
 		.catch(err => {
