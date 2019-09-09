@@ -22,10 +22,21 @@ const Place = require('../models/place')
 
 
 module.exports = (req, res) => {
-	Place.find({}).populate('types').then(data => {
+	Place.find({}).lean().populate('types').then(data => {
 		 res.send(data)
 	})
 	.catch(err => {
 		res.send(err)
 	})
+}
+
+
+let convertImage = (image) => {
+	image = place.images[0]
+}
+
+let reviews = () =>  {
+
+	return place.reviews.length
+
 }
