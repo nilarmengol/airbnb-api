@@ -1,8 +1,8 @@
-const Type = require('../models/user')
+const User = require('../models/user')
 
 module.exports = (req, res) => {
 
-Type.create(req.body).then(data => {
+User.create(req.body).then(data => {
 	 res.send(data)
 })
 .catch(err => {

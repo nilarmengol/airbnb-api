@@ -32,7 +32,11 @@ const Place = mongoose.model('place', {
 	guests: {
     type: Number,
     required: [true, 'Number of guests is required']
-  }
+  },
+	host: {
+		type: mongoose.Schema.Types.ObjectId,
+	  ref: 'user'
+	}
 })
 
 module.exports = Place
