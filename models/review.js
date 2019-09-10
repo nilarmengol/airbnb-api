@@ -20,7 +20,7 @@ const Review = mongoose.model('review', {
   },
 	place: {
 		type: mongoose.Schema.Types.ObjectId,
-	  ref: 'type'
+	  ref: 'place'
   }
 
 })

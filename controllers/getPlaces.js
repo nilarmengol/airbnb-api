@@ -1,5 +1,6 @@
 
 const Place = require('../models/place')
+const Review = require('../models/review')
 
 // module.exports = (req, res) => {
 // 	Place.find({}).then(data => {
@@ -27,16 +28,19 @@ module.exports = (req, res) => {
 	.lean()
 	.then(data => {
 		console.log(data)
-		data.map(place => {
+		let places = data.map(place => {
 			place.image = place.images[0]
 			delete place.images
+			return Review.find({place: place._id}).then(reviews => {
+				place.reviews = reviews.length
+				return place
+			})
 		})
-		res.send(data)
-	})
-	.catch(err => {
-		res.send(err)
-	})
-}
+		Promise.all(places).then(data => {
+			res.send(data)
+		})
+		})
+		}
 
 
 

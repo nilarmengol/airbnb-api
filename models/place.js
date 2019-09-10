@@ -6,7 +6,7 @@ const Place = mongoose.model('place', {
 		type: mongoose.Schema.Types.ObjectId,
 	  ref: 'amenity' // fine?
   }],
-	bathrooms: {
+	bedrooms: {
     type: Number,
     required: [true, 'Number of bathrooms is required']
   },
@@ -49,11 +49,7 @@ const Place = mongoose.model('place', {
 	host: {
 		type: mongoose.Schema.Types.ObjectId,
 	  ref: 'user'
-	},
-	reviews:  {
-			type: String,
-				required: [true, 'Review is required']
-		},
+	}
 })
 
 module.exports = Place
