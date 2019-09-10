@@ -1,6 +1,10 @@
 const express = require('express')
 const app = express()
 const database = require('./database')
+const cors = require('cors')
+app.use(cors({credentials: true}))
+
+
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -25,6 +29,7 @@ app.get('/amenities', require('./controllers/getAmenity'))
 app.post('/reviews', require('./controllers/postReview'))
 app.get('/reviews', require('./controllers/getReview'))
 
+//Middleware
 
 
 

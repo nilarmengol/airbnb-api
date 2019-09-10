@@ -22,23 +22,15 @@ const Place = require('../models/place')
 
 
 module.exports = (req, res) => {
-	Place.find({}).select('bedrooms city country images price reviews title type').lean().then(data => {
-
-data.map(place => {
-	place.image = place.images[0]
- delete place.images
- place.reviews = place.reviews.length
-})
-
-
-// reviews = place.reviews.length
-//
-// 		let convertImage = (image) => {
-// 			image = place.images[0]
-// 		}
-
-
-
+	Place.find({})
+	.select('bedrooms city country images price reviews title type')
+	.lean()
+	.then(data => {
+		console.log(data)
+		data.map(place => {
+			place.image = place.images[0]
+			delete place.images
+		})
 		res.send(data)
 	})
 	.catch(err => {

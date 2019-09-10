@@ -49,7 +49,11 @@ const Place = mongoose.model('place', {
 	host: {
 		type: mongoose.Schema.Types.ObjectId,
 	  ref: 'user'
-	}
+	},
+	reviews:  {
+			type: String,
+				required: [true, 'Review is required']
+		},
 })
 
 module.exports = Place
