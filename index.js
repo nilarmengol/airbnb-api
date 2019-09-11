@@ -27,7 +27,7 @@ app.post('/amenities', require('./controllers/postAmenity'))
 app.get('/amenities', require('./controllers/getAmenity'))
 
 app.post('/reviews', require('./controllers/postReview'))
-app.get('/reviews', require('./controllers/getReview'))
+app.get('/reviews/:id', require('./controllers/getReview'))
 
 //Middleware
 

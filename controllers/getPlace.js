@@ -1,4 +1,5 @@
 const Place = require('../models/place')
+const Review = require('../models/review')
 
 	module.exports = (req,res) => {
 		Place.find({}).lean().then(data => {

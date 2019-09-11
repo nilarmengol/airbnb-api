@@ -1,7 +1,7 @@
-const Type = require('../models/review')
+const Review = require('../models/review')
 
 module.exports = (req, res) => {
-	Type.findById("5d7612e22e21bf1604242c7a").select('reviews').then(data => {
+	Review.find({place: req.params.id}).then(data => {
 		 res.send(data)
 	})
 	.catch(err => {

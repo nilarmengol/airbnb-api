@@ -1,3 +1,4 @@
+
 const Type = require('../models/type')
 
 module.exports = (req, res) => {
