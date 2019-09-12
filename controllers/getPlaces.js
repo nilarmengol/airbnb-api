@@ -1,4 +1,3 @@
-
 const Place = require('../models/place')
 const Review = require('../models/review')
 module.exports = (req, res) => {
@@ -12,20 +11,32 @@ module.exports = (req, res) => {
    if (req.query.min_guests){
        x.guests = {$gte: req.query.min_guests}
    }
-   Place.find(x)
+
+
+   Place.find()
    .select('bedrooms city country images price reviews title type')
    .populate('type')
    .populate('amenities')
+	 .populate('reviews')
    .populate({path: 'host', select: 'name avatar'})
    .lean()
    .then(data => {
-       let places = data.map(p => {
-           p.rating = 2
-           p.image = p.images[0]
-    delete p.images
-           return Review.find({place: p._id}).then(reviews => {
-               p.reviews = reviews.length
-               return p
+
+       let places = data.map(place => {
+           place.image = place.images[0]
+    delete place.images
+           return Review.find({place: place._id}).then(reviews => {
+               place.reviews = reviews.length
+if (reviews.length === 0) {
+	place.rating = 0
+} else {
+								let rating = reviews.map(r => {
+										return r.rating
+									}).reduce((t,i) => t + i)
+									place.rating = rating / reviews.length
+								}
+               return place
+
            })
        })
        Promise.all(places).then(data => {
