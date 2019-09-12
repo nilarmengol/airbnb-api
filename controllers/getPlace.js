@@ -3,7 +3,7 @@ const Review = require('../models/review')
 
 	module.exports = (req,res) => {
 
-	Place.findById(req.params.id).select().populate('host').lean().then(data => {
+	Place.findById(req.params.id).populate('host').populate('amenities').populate('type').populate('reviews').lean().then(data => {
 
 
 data.image = data.images[0]

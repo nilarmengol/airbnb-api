@@ -4,7 +4,7 @@ const Place = mongoose.model('place', {
 	images: [String],
 	amenities:[{
 		type: mongoose.Schema.Types.ObjectId,
-	  ref: 'amenity' // fine?
+	  ref: 'amenity'
   }],
 	bedrooms: {
     type: Number,
