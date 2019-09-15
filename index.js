@@ -1,18 +1,22 @@
- const express = require('express')
+const express = require('express')
 const app = express()
 const database = require('./database')
 const cors = require('cors')
-app.use(cors({credentials: true}))
+app.use(cors({
+  credentials: true
+}))
 
 
 
 const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 app.use(bodyParser.json())
 
 app.post('/places', require('./controllers/postPlaces'))
 app.get('/', require('./controllers/root'))
-// app.get('/places', require('./controllers/getPlace'))
+
 app.get('/places', require('./controllers/getPlaces'))
 app.get('/places/:id', require('./controllers/getPlace'))
 app.patch('/places/:id', require('./controllers/patchPlace'))
@@ -26,13 +30,17 @@ app.post('/users', require('./controllers/postUser'))
 app.post('/amenities', require('./controllers/postAmenity'))
 app.get('/amenities', require('./controllers/getAmenity'))
 
-app.post('/reviews', require('./controllers/postReview'))
+app.post('/reviews', require('./controllers/postReviews'))
 app.get('/reviews/:id', require('./controllers/getReview'))
+
+app.post('/signup', require('./controllers/postSignup'))
+
+
 
 //Middleware
 
 
 
 app.listen(4000, () => {
-    console.log('Ready on port 4000')
+  console.log('Ready on port 4000')
 })
