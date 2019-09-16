@@ -10,7 +10,7 @@ module.exports = (req, res) => {
   User.create(req.body)
     .then(user => {
       let obj = user.toObject();
-      let token = jwt.sign(obj, process.env.VARIABLE_NAME);
+      let token = jwt.sign(obj, process.env.SECRET);
 
       res.send(token);
     })
