@@ -3,19 +3,22 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 module.exports = (req, res) => {
-  console.log("req.body", req.body);
 
-  req.body.password = bcrypt.hashSync(req.body.password, 10);
+	User.findOne({email: req.body.email}).then(user => {
 
-  User.create(req.body)
-    .then(user => {
-      let obj = user.toObject();
-      let token = jwt.sign(obj, process.env.SECRET);
+		if (user) {
+			res.send('you are already registered')
+		}
+		else {
 
-      res.send(token);
-    })
-    .catch(err => {
-      console.log(err);
-      res.send(err);
-    });
-};
+				req.body.password= bcrypt.hashSync(req.body.password, 10)
+			  User.create(req.body)
+				.then(user => {
+		      let obj = user.toObject();
+		      let token = jwt.sign(obj, process.env.SECRET);
+		      res.send(token);
+		    })
+				.catch(err => console.log(err))
+	}
+	})
+	}

@@ -38,6 +38,8 @@ app.get("/reviews/:id", require("./controllers/getReview"));
 
 app.post("/signup", require("./controllers/postSignup"));
 
+// app.post("/login", require("./controllers/postLogin"));
+
 app.post("/pay", require("./controllers/postPay"));
 
 //Middleware
