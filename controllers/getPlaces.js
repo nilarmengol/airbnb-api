@@ -16,8 +16,8 @@ module.exports = (req, res) => {
    Place.find()
    .select('bedrooms city country images price reviews title type')
    .populate('type')
-   .populate('amenities')
-	 .populate('reviews')
+   .populate('amenity')
+	 .populate('review')
    .populate({path: 'host', select: 'name avatar'})
    .lean()
    .then(data => {
